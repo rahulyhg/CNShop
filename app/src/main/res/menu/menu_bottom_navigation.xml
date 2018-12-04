@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/icon_home"
+        android:title="@string/menu_bottom_home"
+        />
+    <item
+        android:id="@+id/navigation_hot"
+        android:icon="@mipmap/icon_hot"
+        android:title="@string/menu_bottom_hot"
+        />
+
+    <item
+        android:id="@+id/navigation_discover"
+        android:icon="@mipmap/icon_discover"
+        android:title="@string/menu_bottom_discover"
+        />
+
+    <item
+        android:id="@+id/navigation_cart"
+        android:icon="@mipmap/icon_cart"
+        android:title="@string/menu_bottom_cart"
+        />
+
+    <item
+        android:id="@+id/navigation_user"
+        android:icon="@mipmap/icon_user"
+        android:title="@string/menu_bottom_user"
+        />
+
+</menu>

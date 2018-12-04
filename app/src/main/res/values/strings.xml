@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CNShop</string>
+    <string name="menu_bottom_home">首页</string>
+    <string name="menu_bottom_discover">发现</string>
+    <string name="menu_bottom_hot">热卖</string>
+    <string name="menu_bottom_cart">购物车</string>
+    <string name="menu_bottom_user">个人</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
