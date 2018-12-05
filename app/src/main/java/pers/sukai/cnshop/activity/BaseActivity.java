@@ -1,4 +1,4 @@
-package pers.sukai.cnshop;
+package pers.sukai.cnshop.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+/**
+ * Created by sukaidev on 2018/12/4.
+ *
+ */
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
     /**

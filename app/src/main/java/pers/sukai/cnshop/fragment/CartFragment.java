@@ -8,13 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import pers.sukai.cnshop.R;
 
-
-
-
-
+/**
+ * Created by sukaidev on 2018/12/4.
+ *
+ */
 
 public class CartFragment extends Fragment {
 

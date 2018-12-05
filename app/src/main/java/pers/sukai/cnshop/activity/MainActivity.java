@@ -1,4 +1,4 @@
-package pers.sukai.cnshop;
+package pers.sukai.cnshop.activity;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,7 +19,7 @@ import pers.sukai.cnshop.R;
 
 
 /**
- * Created by sukai on 2018/12/4.
+ * Created by sukaidev on 2018/12/4.
  * MainActivity 主活动
  */
 
@@ -29,10 +29,12 @@ public class MainActivity extends AppCompatActivity {
     private MenuItem menuItem;
     private ViewPager mVp;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initView();
     }
 
@@ -94,27 +96,22 @@ public class MainActivity extends AppCompatActivity {
                 resetToDefaultIcon();
                 switch(position){
                     case 0:
-
                         menuItem.setIcon(R.mipmap.icon_home_press);
                         menuItem.setChecked(true);
                         break;
                     case 1:
-
                         menuItem.setIcon(R.mipmap.icon_hot_press);
                         menuItem.setChecked(true);
                         break;
                     case 2:
-
                         menuItem.setIcon(R.mipmap.icon_discover_press);
                         menuItem.setChecked(true);
                         break;
                     case 3:
-
                         menuItem.setIcon(R.mipmap.icon_cartfill_press);
                         menuItem.setChecked(true);
                         break;
                     case 4:
-
                         menuItem.setIcon(R.mipmap.icon_user_press);
                         menuItem.setChecked(true);
                         break;
