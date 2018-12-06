@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.HomeFragment">
-
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_slider"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <com.daimajia.slider.library.SliderLayout
-        android:id="@+id/home_slider"
         android:layout_width="match_parent"
         android:layout_height="@dimen/large_height">
 
@@ -21,4 +19,6 @@
 
     </com.daimajia.slider.library.SliderLayout>
 
-</FrameLayout>
+
+
+</LinearLayout>

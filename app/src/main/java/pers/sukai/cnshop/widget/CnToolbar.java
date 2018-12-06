@@ -53,7 +53,6 @@ public class CnToolbar extends Toolbar {
 
             final Drawable rightIcon = a.getDrawable(R.styleable.CnToolbar_rightButtonIcon);
             if (rightIcon != null) {
-                //setNavigationIcon(navIcon);
                 setRightButtonIcon(rightIcon);
             }
 
