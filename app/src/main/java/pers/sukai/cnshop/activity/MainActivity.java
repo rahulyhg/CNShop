@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import pers.sukai.cnshop.R;
 import pers.sukai.cnshop.adapter.BottomAdapter;
 import pers.sukai.cnshop.fragment.CartFragment;
 import pers.sukai.cnshop.fragment.CategoryFragment;
@@ -14,8 +15,6 @@ import pers.sukai.cnshop.fragment.HomeFragment;
 import pers.sukai.cnshop.fragment.HotFragment;
 import pers.sukai.cnshop.fragment.UserFragment;
 import pers.sukai.cnshop.widget.BottomNavigationViewHelper;
-
-import pers.sukai.cnshop.R;
 
 
 /**

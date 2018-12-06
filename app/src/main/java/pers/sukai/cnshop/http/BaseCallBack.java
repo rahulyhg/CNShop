@@ -14,12 +14,11 @@ import okhttp3.Response;
  * create by sukaidev on 2018/12/6.
  * 自定义CallBack.
  */
-
 public abstract class BaseCallBack<T> {
 
     Type type;
 
-    static Type getSupperclassTypeParameter(Class<?> subclass)
+    private static Type getSupperclassTypeParameter(Class<?> subclass)
     {
         Type superclass =  subclass.getGenericSuperclass();
         if (superclass instanceof Class)
@@ -30,7 +29,7 @@ public abstract class BaseCallBack<T> {
         return $Gson$Types.canonicalize(parameterizedType.getActualTypeArguments()[0]);
     }
 
-    public BaseCallBack(){
+    protected BaseCallBack(){
         type = getSupperclassTypeParameter(getClass());
     }
 

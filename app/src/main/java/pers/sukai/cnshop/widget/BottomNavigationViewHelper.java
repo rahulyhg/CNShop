@@ -7,6 +7,10 @@ import android.util.Log;
 
 import java.lang.reflect.Field;
 
+/**
+ * create by sukaidev on 2018/12/5.
+ * 取消menu超过3个时的动画效果.
+ */
 public class BottomNavigationViewHelper {
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);

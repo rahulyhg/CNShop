@@ -63,7 +63,7 @@ public class OkHttpHelper {
         doRequest(request, callback);
     }
 
-    public void doRequest(Request request, final BaseCallBack callback) {
+    private void doRequest(Request request, final BaseCallBack callback) {
 
         callback.onRequestBefore(request);
 
