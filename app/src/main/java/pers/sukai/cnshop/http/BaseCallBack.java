@@ -16,8 +16,15 @@ import okhttp3.Response;
  */
 public abstract class BaseCallBack<T> {
 
+    // 这是请求数据的返回类型，包含常见的（Bean，List等）
     Type type;
 
+
+    /**
+     * 通过反射得到想要的返回类型
+     * @param subclass
+     * @return Type
+     */
     private static Type getSupperclassTypeParameter(Class<?> subclass)
     {
         Type superclass =  subclass.getGenericSuperclass();
@@ -33,14 +40,18 @@ public abstract class BaseCallBack<T> {
         type = getSupperclassTypeParameter(getClass());
     }
 
+    // 请求前，一般用来显示loading
     public abstract  void onRequestBefore(Request request);
 
+    // 请求失败时回调
     public abstract void onFailure(Call call, IOException e);
 
     public abstract void onSuccess(Response response, T t);
 
+    // 请求http成功但出现错误回调
     public abstract void onError(Response response, int Code,Exception e);
 
+    // 服务器返回回调
     public abstract void onResponse(Response response);
 
 }

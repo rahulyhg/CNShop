@@ -13,20 +13,26 @@ import java.util.List;
  * create by sukaidev on 2018/12/6.
  * RecyclerViewAdapter的简单封装.
  */
-public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerView.Adapter<BaseViewHolder> {
 
+    // 数据源
     protected List<T> mDatas;
     protected LayoutInflater mInflater;
     protected  Context mContext;
+    //  创建ViewHolder所用的布局ID
     protected  int mLayoutResId;
 
-    public interface OnItemClicklistener{
+    public interface OnItemClickListener{
         void onClick(View view,int position);
     }
 
-    protected OnItemClicklistener onItemClicklistener;
+    protected OnItemClickListener onItemClickListener;
 
-    public BaseAdapter(Context context ,List<T> datas,int layoutResId) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
+
+    public BaseAdapter(Context context , List<T> datas, int layoutResId) {
         this.mContext = context;
         this.mDatas = datas;
         this.mLayoutResId = layoutResId;
@@ -40,7 +46,7 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
 
         View view = mInflater.inflate(mLayoutResId,null,false);
 
-        return new BaseViewHolder(view,onItemClicklistener);
+        return new BaseViewHolder(view,onItemClickListener);
     }
 
     @Override
@@ -48,6 +54,7 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
 
         T t = getItem(position);
 
+        // 将绑定逻辑交给用户处理
         bindData(holder,t);
     }
 
@@ -90,7 +97,6 @@ public abstract class BaseAdapter<T, H extends BaseViewHolder> extends RecyclerV
         return mDatas;
     }
 
+    // 对ViewHolder内的控件进行操作交给用户
     public abstract void bindData(BaseViewHolder holder,T t);
-
-
 }

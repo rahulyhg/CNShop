@@ -53,20 +53,40 @@ public class OkHttpHelper {
         handler = new Handler(Looper.getMainLooper());
     }
 
+    /**
+     * 通用基础的异步get请求
+     *
+     * @param url
+     * @param callback
+     */
     public void get(String url, BaseCallBack callback) {
         Request request = buildeRequest(url, HttpMethodType.GET, null);
         doRequest(request, callback);
     }
 
+    /**
+     * 通用基础的异步post请求
+     *
+     * @param url      请求Url
+     * @param params   请求参数
+     * @param callback 请求回调
+     */
     public void post(String url, Map<String, String> params, BaseCallBack callback) {
         Request request = buildeRequest(url, HttpMethodType.POST, params);
         doRequest(request, callback);
     }
 
+    /**
+     * 发出请求并开始回调
+     *
+     * @param request  Request
+     * @param callback CallBack
+     */
     private void doRequest(Request request, final BaseCallBack callback) {
 
         callback.onRequestBefore(request);
 
+        // UI Thread
         okHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -81,6 +101,7 @@ public class OkHttpHelper {
                 if (response.isSuccessful()) {
 
                     String resultStr = response.body().string();
+
                     if (callback.type == String.class) {
                         callbackSuccess(callback, response, resultStr);
                     } else {
@@ -98,6 +119,14 @@ public class OkHttpHelper {
         });
     }
 
+    /**
+     * 构建Request
+     *
+     * @param url
+     * @param methodType 方法类型
+     * @param params
+     * @return
+     */
     private Request buildeRequest(String url, HttpMethodType methodType, Map<String, String> params) {
 
         Request.Builder builder = new Request.Builder();
@@ -114,6 +143,13 @@ public class OkHttpHelper {
         return builder.build();
     }
 
+
+    /**
+     * 构建RequestBody
+     *
+     * @param params
+     * @return
+     */
     private RequestBody builderFormData(Map<String, String> params) {
         FormBody.Builder builder = new FormBody.Builder();
         if (params != null) {
@@ -124,6 +160,13 @@ public class OkHttpHelper {
         return builder.build();
     }
 
+    /**
+     * 处理请求成功的回调信息方法
+     *
+     * @param callback 回调
+     * @param response 服务器返回信息
+     * @param obeject  服务器响应信息
+     */
     private void callbackSuccess(final BaseCallBack callback, final Response response, final Object obeject) {
 
         handler.post(new Runnable() {

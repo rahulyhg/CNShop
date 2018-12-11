@@ -1,5 +1,6 @@
 package pers.sukai.cnshop.widget;
 
+import android.annotation.SuppressLint;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
@@ -12,9 +13,11 @@ import java.lang.reflect.Field;
  * 取消menu超过3个时的动画效果.
  */
 public class BottomNavigationViewHelper {
+    @SuppressLint("RestrictedApi")
     public static void disableShiftMode(BottomNavigationView view) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
         try {
+            // 查看源码得知有个boolean值的字段名为mShiftingMode控制位移效果
             Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
             shiftingMode.setAccessible(true);
             shiftingMode.setBoolean(menuView, false);

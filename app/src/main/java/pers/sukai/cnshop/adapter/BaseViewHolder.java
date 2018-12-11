@@ -3,6 +3,7 @@ package pers.sukai.cnshop.adapter;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,15 +13,16 @@ import android.widget.TextView;
 
 public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+    // 安卓官方提供的容器
     private SparseArray<View> views;
 
-    private BaseAdapter.OnItemClicklistener onItemClicklistener;
+    private BaseAdapter.OnItemClickListener onItemClickListener;
 
-    public BaseViewHolder(View itemView, BaseAdapter.OnItemClicklistener listener) {
+    public BaseViewHolder(View itemView, BaseAdapter.OnItemClickListener listener) {
         super(itemView);
         views = new SparseArray<>();
 
-        this.onItemClicklistener = listener;
+        this.onItemClickListener = listener;
         itemView.setOnClickListener(this);
     }
 
@@ -33,6 +35,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     }
 
     public ImageView getImageView(int id){
+        return findView(id);
+    }
+
+    public Button getButton(int id){
         return findView(id);
     }
 
@@ -52,8 +58,8 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     @Override
     public void onClick(View v) {
 
-        if (onItemClicklistener!=null){
-            onItemClicklistener.onClick(v,getLayoutPosition());
+        if (onItemClickListener!=null){
+            onItemClickListener.onClick(v,getLayoutPosition());
         }
 
     }

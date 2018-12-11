@@ -61,7 +61,6 @@ public class HomePageAdapter extends RecyclerView.Adapter<HomePageAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
         if (position == 0) {
             if (banners != null && !hasInit) {
                 for (Banner banner : banners) {
