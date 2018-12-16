@@ -22,8 +22,8 @@ import pers.sukai.cnshop.Contains;
 import pers.sukai.cnshop.R;
 import pers.sukai.cnshop.adapter.BaseAdapter;
 import pers.sukai.cnshop.adapter.HotPageAdapter;
-import pers.sukai.cnshop.bean.hot.Page;
 import pers.sukai.cnshop.bean.hot.Ware;
+import pers.sukai.cnshop.bean.hot.Page;
 import pers.sukai.cnshop.http.BaseCallBack;
 import pers.sukai.cnshop.http.OkHttpHelper;
 
@@ -54,7 +54,7 @@ public class HotFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hot, container);
+        View view = inflater.inflate(R.layout.fragment_hot, null);
         refreshView = view.findViewById(R.id.refresh_layout);
 
         initRefresh();
@@ -102,7 +102,7 @@ public class HotFragment extends Fragment {
 
     private void requestResources() {
 
-        String url = Contains.API.WARE_URL + "?currentPage=" + currentPage + "&pageSize=" + pageSize;
+        String url = Contains.API.HOT_WARE_URL + "?currentPage=" + currentPage + "&pageSize=" + pageSize;
 
         httpHelper.get(url, new BaseCallBack<Page<Ware>>() {
             @Override

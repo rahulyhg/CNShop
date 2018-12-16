@@ -27,7 +27,7 @@ public class HotPageAdapter extends BaseAdapter<Ware,BaseViewHolder> {
         SimpleDraweeView draweeView = (SimpleDraweeView) holder.getView(R.id.ware_drawee_view);
         draweeView.setImageURI(Uri.parse(ware.getImgUrl()));
         holder.getTextView(R.id.ware_title).setText(ware.getTitle());
-        holder.getTextView(R.id.ware_price).setText("¥"+ware.getPrice());
+        holder.getTextView(R.id.ware_price).setText("¥"+ ware.getPrice());
         holder.getTextView(R.id.ware_sale).setText("已售:" + ware.getSale());
 
         holder.getButton(R.id.btn_purchase).setOnClickListener(new View.OnClickListener() {

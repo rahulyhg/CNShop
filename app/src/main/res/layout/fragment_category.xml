@@ -1,6 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/category_fragment">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycle_view_discover"
+        android:layout_width="@dimen/category_layout_width"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp">
+
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/home_slider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/medium_height">
+
+            <com.daimajia.slider.library.Indicators.PagerIndicator
+                android:id="@+id/custom_indicator"
+                style="@style/AndroidImageSlider_Magnifier_Oval_Black"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" />
+
+        </com.daimajia.slider.library.SliderLayout>
+
+        <com.example.refreshview.CustomRefreshView
+            android:id="@+id/custom_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.example.refreshview.CustomRefreshView>
+
+    </LinearLayout>
+</LinearLayout>
