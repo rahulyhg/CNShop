@@ -59,7 +59,7 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View v) {
 
         if (onItemClickListener!=null){
-            onItemClickListener.onClick(v,getLayoutPosition());
+            onItemClickListener.onItemClick(v,getLayoutPosition());
         }
 
     }

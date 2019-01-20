@@ -1,11 +1,20 @@
 package pers.sukai.cnshop.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
+import java.lang.ref.WeakReference;
 
 import pers.sukai.cnshop.R;
 import pers.sukai.cnshop.adapter.BottomAdapter;
@@ -24,22 +33,22 @@ import pers.sukai.cnshop.widget.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    @ViewInject(R.id.BottomNavigationView)
     private BottomNavigationView mBv;
-    private MenuItem menuItem;
+    @ViewInject(R.id.ViewPager)
     private ViewPager mVp;
-
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        x.view().inject(this);
         initView();
     }
 
     private void initView() {
-        mBv = findViewById(R.id.BottomNavigationView);
-        mVp = findViewById(R.id.ViewPager);
         BottomNavigationViewHelper.disableShiftMode(mBv);
 //        mBv.setItemIconTintList(null);
         //这里可true是一个消费过程，同样可以使用break，外部返回true也可以

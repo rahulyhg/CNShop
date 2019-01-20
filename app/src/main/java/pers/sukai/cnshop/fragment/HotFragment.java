@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 
 import com.example.refreshview.CustomRefreshView;
 
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ import pers.sukai.cnshop.http.OkHttpHelper;
 
 public class HotFragment extends Fragment {
 
+    @ViewInject(R.id.refresh_layout)
     private CustomRefreshView refreshView;
     private HotPageAdapter adapter;
 
@@ -55,8 +59,8 @@ public class HotFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_hot, null);
-        refreshView = view.findViewById(R.id.refresh_layout);
 
+        x.view().inject(this,view);
         initRefresh();
         requestResources();
 
@@ -84,7 +88,7 @@ public class HotFragment extends Fragment {
                 refreshView.setAdapter(adapter);
                 adapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
                     @Override
-                    public void onClick(View view, int position) {
+                    public void onItemClick(View view, int position) {
 
                     }
                 });

@@ -4,7 +4,8 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "pers.sukai.cnshop"
-        minSdkVersion 25
+        minSdkVersion 15
+        //noinspection OldTargetApi
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -36,4 +37,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'org.xutils:xutils:3.5.0'
 }

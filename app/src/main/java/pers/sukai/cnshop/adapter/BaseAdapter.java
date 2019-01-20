@@ -23,7 +23,7 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
     protected  int mLayoutResId;
 
     public interface OnItemClickListener{
-        void onClick(View view,int position);
+        void onItemClick(View view,int position);
     }
 
     protected OnItemClickListener onItemClickListener;
@@ -44,7 +44,7 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
     @Override
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = mInflater.inflate(mLayoutResId,null,false);
+        View view = mInflater.inflate(mLayoutResId,parent,false);
 
         return new BaseViewHolder(view,onItemClickListener);
     }
@@ -84,6 +84,12 @@ public abstract class BaseAdapter<T,H extends BaseViewHolder> extends RecyclerVi
     public List<T> getDatas(){
 
         return  mDatas;
+    }
+
+    public void clear(){
+        int itemCount = mDatas.size();
+        mDatas.clear();
+        this.notifyItemRangeRemoved(0,itemCount);
     }
 
     public void addData(int position, List<T> datas) {

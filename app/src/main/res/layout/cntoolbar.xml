@@ -32,7 +32,7 @@
         android:visibility="gone"
         />
 
-    <ImageButton
+    <pers.sukai.cnshop.widget.CustomImageButton
         android:id="@+id/toolbar_rightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

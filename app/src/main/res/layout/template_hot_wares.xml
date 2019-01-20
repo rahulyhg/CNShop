@@ -13,16 +13,18 @@
         app:viewAspectRatio="1"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignParentLeft="true">
 
     </com.facebook.drawee.view.SimpleDraweeView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
         android:layout_toEndOf="@+id/ware_drawee_view"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginLeft="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_toRightOf="@+id/ware_drawee_view">
 
         <TextView
             android:id="@+id/ware_title"

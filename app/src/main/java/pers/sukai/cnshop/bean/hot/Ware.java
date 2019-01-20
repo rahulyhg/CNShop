@@ -1,6 +1,8 @@
 package pers.sukai.cnshop.bean.hot;
 
-public class Ware {
+import java.io.Serializable;
+
+public class Ware implements Serializable {
 
     private int id;
     private int categoryId;

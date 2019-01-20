@@ -11,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,7 @@ public class HomeFragment extends Fragment {
 
     private View view;
 
+    @ViewInject(R.id.recycle_view)
     RecyclerView recyclerView;
     HomePageAdapter adapter;
 
@@ -45,7 +49,11 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, null);
+
+        x.view().inject(this,view);
+
         requestResources();
+
         return view;
     }
 
@@ -116,7 +124,6 @@ public class HomeFragment extends Fragment {
 
     private void initRecycleView(View view) {
 
-        recyclerView = view.findViewById(R.id.recycle_view);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new HomePageAdapter(banners, campaigns, getContext());

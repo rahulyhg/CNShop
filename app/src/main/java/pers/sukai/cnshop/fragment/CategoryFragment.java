@@ -8,6 +8,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.ViewUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Tricks.ViewPagerEx;
 import com.example.refreshview.CustomRefreshView;
+
+import org.xutils.view.annotation.ViewInject;
+import org.xutils.x;
 
 import java.io.IOException;
 import java.util.List;
@@ -45,13 +49,17 @@ import pers.sukai.cnshop.http.OkHttpHelper;
 
 public class CategoryFragment extends Fragment {
 
+    @ViewInject(R.id.recycle_view_discover)
     private RecyclerView recyclerView;
     private CategoryAdapter categoryAdapter;
 
+    @ViewInject(R.id.home_slider)
     private SliderLayout slider;
 
+    @ViewInject(R.id.custom_indicator)
     private PagerIndicator indicator;
 
+    @ViewInject(R.id.custom_refresh)
     private CustomRefreshView refreshLayout;
     private WaresAdapter waresAdapter;
 
@@ -71,10 +79,7 @@ public class CategoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category, null, false);
 
-        recyclerView = view.findViewById(R.id.recycle_view_discover);
-        slider = view.findViewById(R.id.home_slider);
-        indicator = view.findViewById(R.id.custom_indicator);
-        refreshLayout = view.findViewById(R.id.custom_refresh);
+        x.view().inject(this,view);
 
         requestBannerResource();
         requestCategory();
@@ -91,7 +96,7 @@ public class CategoryFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         categoryAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view, int position) {
+            public void onItemClick(View view, int position) {
 
                 if (position <= 9) {
                     Category category = categoryAdapter.getItem(position);
@@ -154,7 +159,7 @@ public class CategoryFragment extends Fragment {
                 refreshLayout.getRecyclerView().setLayoutManager(new GridLayoutManager(getContext(), 2));
                 waresAdapter.setOnItemClickListener(new BaseAdapter.OnItemClickListener() {
                     @Override
-                    public void onClick(View view, int position) {
+                    public void onItemClick(View view, int position) {
 
                     }
                 });

@@ -19,7 +19,7 @@ import pers.sukai.cnshop.R;
 
 
 /**
- * Created by sukaidev on 18/12/5.
+ * Created by sukaidev on 2018/12/5.
  */
 public class CnToolbar extends Toolbar {
 
@@ -28,25 +28,25 @@ public class CnToolbar extends Toolbar {
     private View mView;
     private TextView mTextTitle;
     private EditText mSearchView;
-    private ImageButton mRightImageButton;
+    private CustomImageButton mRightImageButton;
 
 
     public CnToolbar(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
-    public CnToolbar(Context context,@Nullable AttributeSet attrs) {
+    public CnToolbar(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
     @SuppressLint("RestrictedApi")
-    public CnToolbar(Context context,@Nullable AttributeSet attrs, int defStyleAttr) {
+    public CnToolbar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         initView();
-        setContentInsetsRelative(10,10);
+        setContentInsetsRelative(10, 10);
 
-        if(attrs !=null) {
+        if (attrs != null) {
             final TintTypedArray a = TintTypedArray.obtainStyledAttributes(getContext(), attrs,
                     R.styleable.CnToolbar, defStyleAttr, 0);
 
@@ -57,9 +57,9 @@ public class CnToolbar extends Toolbar {
             }
 
 
-            boolean isShowSearchView = a.getBoolean(R.styleable.CnToolbar_isShowSearchView,false);
+            boolean isShowSearchView = a.getBoolean(R.styleable.CnToolbar_isShowSearchView, false);
 
-            if(isShowSearchView){
+            if (isShowSearchView) {
 
                 showSearchView();
                 hideTitleView();
@@ -73,18 +73,18 @@ public class CnToolbar extends Toolbar {
     private void initView() {
 
 
-        if(mView == null) {
+        if (mView == null) {
 
             mInflater = LayoutInflater.from(getContext());
             mView = mInflater.inflate(R.layout.cntoolbar, null);
 
 
-            mTextTitle =  mView.findViewById(R.id.toolbar_title);
+            mTextTitle = mView.findViewById(R.id.toolbar_title);
             mSearchView = mView.findViewById(R.id.toolbar_searchview);
-            mRightImageButton =  mView.findViewById(R.id.toolbar_rightButton);
+            mRightImageButton = mView.findViewById(R.id.toolbar_rightButton);
 
 
-            mSearchView.setOnClickListener(new OnClickListener(){
+            mSearchView.setOnClickListener(new OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
@@ -99,13 +99,12 @@ public class CnToolbar extends Toolbar {
         }
 
 
-
     }
 
 
-    public void  setRightButtonIcon(Drawable icon){
+    public void setRightButtonIcon(Drawable icon) {
 
-        if(mRightImageButton !=null){
+        if (mRightImageButton != null) {
 
             mRightImageButton.setImageDrawable(icon);
             mRightImageButton.setVisibility(VISIBLE);
@@ -120,12 +119,10 @@ public class CnToolbar extends Toolbar {
     }
 
 
-    public  void setRightButtonOnClickListener(OnClickListener li){
+    public void setRightButtonOnClickListener(OnClickListener li) {
 
         mRightImageButton.setOnClickListener(li);
     }
-
-
 
 
     @Override
@@ -138,34 +135,30 @@ public class CnToolbar extends Toolbar {
     public void setTitle(CharSequence title) {
 
         initView();
-        if(mTextTitle !=null) {
+        if (mTextTitle != null) {
             mTextTitle.setText(title);
             showTitleView();
         }
 
 
-
-
-
     }
 
 
+    public void showSearchView() {
 
-    public  void showSearchView(){
-
-        if(mSearchView !=null)
+        if (mSearchView != null)
             mSearchView.setVisibility(VISIBLE);
 
     }
 
 
-    public void hideSearchView(){
-        if(mSearchView !=null)
+    public void hideSearchView() {
+        if (mSearchView != null)
             mSearchView.setVisibility(GONE);
     }
 
-    public void showTitleView(){
-        if(mTextTitle !=null)
+    public void showTitleView() {
+        if (mTextTitle != null)
             mTextTitle.setVisibility(VISIBLE);
     }
 
@@ -173,8 +166,19 @@ public class CnToolbar extends Toolbar {
     public void hideTitleView() {
         if (mTextTitle != null)
 
-        mTextTitle.setVisibility(GONE);
+            mTextTitle.setVisibility(GONE);
 
+    }
+
+    public View getRightButton() {
+        return mRightImageButton;
+    }
+
+    public void setRightButtonText(String title) {
+
+        if (mRightImageButton != null) {
+            mRightImageButton.setText(title);
+        }
     }
 
 
