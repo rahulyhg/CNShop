@@ -13,6 +13,7 @@
         android:layout_marginStart="7.5dp"
         android:textSize="16sp"
         android:textColor="@color/darkgrey"
-        android:background="@drawable/touch_bg"/>
+        android:background="@drawable/touch_bg"
+        android:layout_marginLeft="7.5dp" />
 
 </LinearLayout>

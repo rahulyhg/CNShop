@@ -55,7 +55,7 @@ public class HotPageAdapter extends BaseAdapter<Ware,BaseViewHolder> {
         cart.setId(item.getId());
         cart.setTitle(item.getTitle());
         cart.setImgUrl(item.getImgUrl());
-//        cart.setName(item.getName());
+        cart.setChecked(true);
         cart.setPrice(item.getPrice());
 
         return cart;

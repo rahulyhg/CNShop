@@ -10,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -24,6 +25,7 @@ import pers.sukai.cnshop.fragment.HomeFragment;
 import pers.sukai.cnshop.fragment.HotFragment;
 import pers.sukai.cnshop.fragment.UserFragment;
 import pers.sukai.cnshop.widget.BottomNavigationViewHelper;
+import pers.sukai.cnshop.widget.CnToolbar;
 
 
 /**
@@ -33,11 +35,19 @@ import pers.sukai.cnshop.widget.BottomNavigationViewHelper;
 
 public class MainActivity extends AppCompatActivity {
 
+    // ToolBar状态
+    public static final int TOOLBAR_SEARCH = 0;
+    public static final int TOOLBAR_CART = 1;
+    public int Toolbar_status = TOOLBAR_SEARCH;
+
     @ViewInject(R.id.BottomNavigationView)
     private BottomNavigationView mBv;
     @ViewInject(R.id.ViewPager)
     private ViewPager mVp;
     private MenuItem menuItem;
+
+    @ViewInject(R.id.toolbar)
+    private CnToolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,22 +71,27 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.navigation_home:
                         item.setIcon(R.mipmap.icon_home_press);
                         mVp.setCurrentItem(0);
+                        changeToolbar(TOOLBAR_SEARCH);
                         return true;
                     case R.id.navigation_hot:
                         mVp.setCurrentItem(1);
                         item.setIcon(R.mipmap.icon_hot_press);
+                        changeToolbar(TOOLBAR_SEARCH);
                         return true;
                     case R.id.navigation_discover:
                         item.setIcon(R.mipmap.icon_discover_press);
                         mVp.setCurrentItem(2);
+                        changeToolbar(TOOLBAR_SEARCH);
                         return true;
                     case R.id.navigation_cart:
                         item.setIcon(R.mipmap.icon_cartfill_press);
                         mVp.setCurrentItem(3);
+                        changeToolbar(TOOLBAR_CART);
                         return true;
                     case R.id.navigation_user:
                         item.setIcon(R.mipmap.icon_user_press);
                         mVp.setCurrentItem(4);
+                        changeToolbar(TOOLBAR_SEARCH);
                         return true;
                 }
                 return false;
@@ -102,26 +117,31 @@ public class MainActivity extends AppCompatActivity {
                 }
                 menuItem = mBv.getMenu().getItem(position);
                 resetToDefaultIcon();
-                switch(position){
+                switch (position) {
                     case 0:
                         menuItem.setIcon(R.mipmap.icon_home_press);
                         menuItem.setChecked(true);
+                        changeToolbar(TOOLBAR_SEARCH);
                         break;
                     case 1:
                         menuItem.setIcon(R.mipmap.icon_hot_press);
                         menuItem.setChecked(true);
+                        changeToolbar(TOOLBAR_SEARCH);
                         break;
                     case 2:
                         menuItem.setIcon(R.mipmap.icon_discover_press);
                         menuItem.setChecked(true);
+                        changeToolbar(TOOLBAR_SEARCH);
                         break;
                     case 3:
                         menuItem.setIcon(R.mipmap.icon_cartfill_press);
                         menuItem.setChecked(true);
+                        changeToolbar(TOOLBAR_CART);
                         break;
                     case 4:
                         menuItem.setIcon(R.mipmap.icon_user_press);
                         menuItem.setChecked(true);
+                        changeToolbar(TOOLBAR_SEARCH);
                         break;
                 }
 
@@ -164,5 +184,25 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new CartFragment());
         adapter.addFragment(new UserFragment());
         viewPager.setAdapter(adapter);
+    }
+
+    // 改变Toolbar状态
+    public void changeToolbar(int status) {
+
+        if (status == TOOLBAR_SEARCH || status == TOOLBAR_CART) {
+            if (status == TOOLBAR_SEARCH && Toolbar_status == TOOLBAR_CART) {
+
+                mToolbar.showSearchView();
+                mToolbar.hideTitleView();
+                mToolbar.getRightButton().setVisibility(View.GONE);
+                Toolbar_status = status;
+
+            } else if (status == TOOLBAR_CART && Toolbar_status == TOOLBAR_SEARCH) {
+                CartFragment cartFragment = new CartFragment();
+                cartFragment.changeToolbar(mToolbar);
+                Toolbar_status = TOOLBAR_CART;
+
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@
         android:hint="@string/searchhint"
         android:cursorVisible="false"
         android:visibility="gone"
-        />
+        android:drawableLeft="@mipmap/icon_search" />
 
     <TextView
         android:id="@+id/toolbar_title"
@@ -32,14 +32,14 @@
         android:visibility="gone"
         />
 
-    <pers.sukai.cnshop.widget.CustomImageButton
+    <Button
         android:id="@+id/toolbar_rightButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:textColor="@color/white"
+        android:textSize="18sp"
         android:visibility="gone"
-        style="@android:style/Widget.Material.Toolbar.Button.Navigation"
-        />
+        android:layout_alignParentRight="true" />
 </RelativeLayout>

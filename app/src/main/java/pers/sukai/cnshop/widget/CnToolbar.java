@@ -3,7 +3,9 @@ package pers.sukai.cnshop.widget;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.TintTypedArray;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
@@ -11,8 +13,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import pers.sukai.cnshop.R;
@@ -23,22 +25,27 @@ import pers.sukai.cnshop.R;
  */
 public class CnToolbar extends Toolbar {
 
+
+
     private LayoutInflater mInflater;
 
     private View mView;
     private TextView mTextTitle;
     private EditText mSearchView;
-    private CustomImageButton mRightImageButton;
+    private Button mRightButton;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public CnToolbar(Context context) {
         this(context, null);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public CnToolbar(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @SuppressLint("RestrictedApi")
     public CnToolbar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
@@ -81,7 +88,7 @@ public class CnToolbar extends Toolbar {
 
             mTextTitle = mView.findViewById(R.id.toolbar_title);
             mSearchView = mView.findViewById(R.id.toolbar_searchview);
-            mRightImageButton = mView.findViewById(R.id.toolbar_rightButton);
+            mRightButton = mView.findViewById(R.id.toolbar_rightButton);
 
 
             mSearchView.setOnClickListener(new OnClickListener() {
@@ -97,18 +104,18 @@ public class CnToolbar extends Toolbar {
 
             addView(mView, lp);
         }
-
-
     }
 
 
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void setRightButtonIcon(Drawable icon) {
 
-        if (mRightImageButton != null) {
+        if (mRightButton != null) {
 
-            mRightImageButton.setImageDrawable(icon);
-            mRightImageButton.setVisibility(VISIBLE);
-            mRightImageButton.setOnClickListener(new OnClickListener() {
+            mRightButton.setBackground(icon);
+            mRightButton.setVisibility(VISIBLE);
+            mRightButton.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -119,9 +126,10 @@ public class CnToolbar extends Toolbar {
     }
 
 
+
     public void setRightButtonOnClickListener(OnClickListener li) {
 
-        mRightImageButton.setOnClickListener(li);
+        mRightButton.setOnClickListener(li);
     }
 
 
@@ -170,26 +178,34 @@ public class CnToolbar extends Toolbar {
 
     }
 
-    public View getRightButton() {
-        return mRightImageButton;
+    public Button getRightButton() {
+        return mRightButton;
     }
+
+
 
     public void setRightButtonText(String title) {
 
-        if (mRightImageButton != null) {
-            mRightImageButton.setText(title);
+        if (mRightButton != null) {
+            mRightButton.setText(title);
         }
+    }
+
+    public void restoreToolBar(){
+        showSearchView();
+        hideTitleView();
+        getRightButton().setVisibility(View.GONE);
     }
 
 
 //
 //    private void ensureRightButtonView() {
-//        if (mRightImageButton == null) {
-//            mRightImageButton = new ImageButton(getContext(), null,
+//        if (mRightButton == null) {
+//            mRightButton = new ImageButton(getContext(), null,
 //                    android.support.v7.appcompat.R.attr.toolbarNavigationButtonStyle);
 //            final LayoutParams lp = generateDefaultLayoutParams();
 //            lp.gravity = GravityCompat.START | (Gravity.VERTICAL_GRAVITY_MASK);
-//            mRightImageButton.setLayoutParams(lp);
+//            mRightButton.setLayoutParams(lp);
 //        }
 //    }
 

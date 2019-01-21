@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
@@ -63,14 +65,10 @@ public class CartFragment extends Fragment implements View.OnClickListener {
         x.view().inject(this, view);
 
         cartProvider = new CartProvider(getContext());
-
+        mBtnOrder.setOnClickListener(this);
+        mBtnDel.setOnClickListener(this);
         showData();
         return view;
-    }
-
-    public void delCart(View view) {
-
-        mAdapter.delCart();
     }
 
     private void showData() {
@@ -105,23 +103,33 @@ public class CartFragment extends Fragment implements View.OnClickListener {
 
             mToolbar = activity.findViewById(R.id.toolbar);
 
-            changeToolbar();
-
+            if (activity.Toolbar_status == MainActivity.TOOLBAR_SEARCH) {
+                changeToolbar();
+                activity.Toolbar_status = MainActivity.TOOLBAR_CART;
+            }
         }
     }
 
-    public void changeToolbar() {
+
+    private void changeToolbar(){
 
         mToolbar.hideSearchView();
         mToolbar.showTitleView();
         mToolbar.setTitle(R.string.menu_bottom_cart);
         mToolbar.getRightButton().setVisibility(View.VISIBLE);
         mToolbar.setRightButtonText("编辑");
-
         mToolbar.getRightButton().setOnClickListener(this);
-
         mToolbar.getRightButton().setTag(ACTION_EDIT);
+    }
 
+    public void changeToolbar(CnToolbar toolbar) {
+
+        toolbar.hideSearchView();
+        toolbar.showTitleView();
+        toolbar.setTitle(R.string.menu_bottom_cart);
+        toolbar.getRightButton().setVisibility(View.VISIBLE);
+        toolbar.setRightButtonText("编辑");
+        toolbar.getRightButton().setTag(ACTION_EDIT);
 
     }
 
@@ -156,14 +164,29 @@ public class CartFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
+        switch (v.getId()){
+            case R.id.toolbar_rightButton:
+                int action = (int) v.getTag();
+                if (ACTION_EDIT == action) {
 
-        int action = (int) v.getTag();
-        if (ACTION_EDIT == action) {
+                    showDelControl();
+                } else if (ACTION_CAMPLATE == action) {
 
-            showDelControl();
-        } else if (ACTION_CAMPLATE == action) {
+                    hideDelControl();
+                }
+                break;
+            case R.id.btn_order:
+                Toast.makeText(getContext(),"结算",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.btn_del:
 
-            hideDelControl();
+                Toast.makeText(getContext(),"删除",Toast.LENGTH_LONG).show();
+                mAdapter.delCart();
+                break;
+            default:
+                break;
         }
+
     }
+
 }
